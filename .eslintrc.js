@@ -88,7 +88,7 @@ module.exports = {
 				format: ['PascalCase'],
 			},
 		],
-
+		"react/react-in-jsx-scope": "off",
 		'indent': [
 			'error',
 			2
