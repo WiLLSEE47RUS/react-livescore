@@ -5,4 +5,10 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  .active, .active:hover{
+    background: #002945;
+    span{
+      color: #576e51;
+    }
+  }
 `;
