@@ -4,7 +4,7 @@ export const GlobalStyle = createGlobalStyle`
   :root{
     --midGray: #222;
     --containerWidth: 1140px;
-    --navLinkColor: #4a6494;
+    --navLinkColor: #ffffff80;
   }
   * {
     margin: 0;
