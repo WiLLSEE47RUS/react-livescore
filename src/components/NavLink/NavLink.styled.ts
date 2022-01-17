@@ -5,15 +5,12 @@ export const LinkWrapper = styled(NavLink)`
   height: 80%;
   max-width: 150px;
   padding: 0 15px;
-  border-radius: 15px;
+  border-radius: 12px;
   transition: background 0.5s ease;
   :hover {
-    background: #849cbc;
-    a{
-      color: #181818;
-    }
+    background: #ff970020;
   }
- 
+  
   display: flex;
   align-items: center;
   justify-content: center;
