@@ -13,7 +13,7 @@ function Header(): JSX.Element {
         <Logo src={logo} alt="logo"/>
         <NavBar linkObjects={[
           {
-            link: '/',
+            link: '/events',
             label: 'События',
             icon: <SportsSoccerIcon/>,
           },

@@ -2,11 +2,13 @@ import { AnyAction, configureStore, Dispatch } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 import {sectionSlice} from './sections/sections.slice';
+import {sportTypeSlice} from './sportTypes/sportTypes.slice';
 
 
 export const store = configureStore({
   reducer: {
     sections: sectionSlice.reducer,
+    sportTypes: sportTypeSlice.reducer,
   },
 });
 

@@ -1,3 +1,4 @@
 export enum ApiVersion{
-  Sections = '/sections'
+  Sections = '/sections',
+  Sports = '/sports',
 }

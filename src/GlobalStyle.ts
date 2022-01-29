@@ -3,8 +3,10 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
   :root{
     --midGray: #222;
+    --midGrayTP: #22222220;
     --containerWidth: 1140px;
     --navLinkColor: #ffffff80;
+    --activeLinkBackground: #ff9700;
   }
   * {
     margin: 0;
@@ -18,5 +20,12 @@ export const GlobalStyle = createGlobalStyle`
   }
   body{
     background: var(--midGray);
+  }
+  .app-wrapper{
+    
+  }
+  .app-container{
+    max-width: var(--containerWidth);
+    margin: 0 auto;
   }
 `;
