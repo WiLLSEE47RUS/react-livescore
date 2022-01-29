@@ -19,3 +19,6 @@ export interface INameTranslation {
   'nl'?: string;
   'pt'?: string;
 }
+export interface ISportPayload{
+  data: ISportModel[]
+}

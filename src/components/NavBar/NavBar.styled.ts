@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   justify-content: center;
 
   .active, .active:hover {
-    background: #ff9700;
+    background: var(--activeLinkBackground);
 
     span {
       color: #333;
