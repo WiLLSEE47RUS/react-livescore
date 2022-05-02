@@ -2,7 +2,7 @@ import axios from 'axios';
 import {getBaseUrl, paramsSerializer} from '../utils/url';
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const getHeader = () => {
+export const getHeader = () => {
   return {
     'x-rapidapi-host': 'sportscore1.p.rapidapi.com',
     'x-rapidapi-key': '6288613dd3msha86578bf731ee12p163163jsn613e83c122df'

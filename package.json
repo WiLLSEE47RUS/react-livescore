@@ -37,22 +37,31 @@
     "webpack-dev-server": "^4.7.3"
   },
   "dependencies": {
+    "@date-io/date-fns": "^2.13.1",
+    "@date-io/dayjs": "^2.13.1",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.2.5",
     "@mui/material": "^5.2.8",
+    "@mui/x-date-pickers": "^5.0.0-alpha.2",
     "@reduxjs/toolkit": "^1.7.1",
     "@types/react-router": "^5.1.17",
     "@types/react-router-dom": "^5.3.2",
     "@types/styled-components": "^5.1.20",
     "axios": "^0.24.0",
+    "css-loader": "^6.7.1",
+    "date-fns": "^2.28.0",
     "eslint-webpack-plugin": "^3.1.1",
     "html-webpack-plugin": "^5.5.0",
+    "moment": "^2.29.3",
     "qs": "^6.10.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
+    "react-reveal": "^1.2.2",
     "react-router": "^6.2.1",
-    "react-router-dom": "^6.2.1"
+    "react-router-dom": "^6.2.1",
+    "react-transition-group": "^4.4.2",
+    "style-loader": "^3.3.1"
   }
 }
