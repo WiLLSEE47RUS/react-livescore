@@ -58,9 +58,16 @@ export const EventsModeButton = styled.div<{mode: EventsViewModes, active?: bool
 `;
 export const EventItem = styled.div`
   display: grid;
-  grid-template-columns: 1fr 100px 1fr;
+  grid-template-columns: 1fr 150px 1fr;
   justify-content: center;
+  align-items: center;
   margin: 5px;
+  font-size: 24px;
+  img{
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
   .score{
     text-align: center;
     font-weight: 700;
@@ -68,5 +75,6 @@ export const EventItem = styled.div`
   }
   .awayTeam{
     justify-self: end;
+    text-align: end;
   }
 `;

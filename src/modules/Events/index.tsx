@@ -87,9 +87,15 @@ const Events: FC<EventsPropsType> = () => {
               </EventsHeader>
               {events.map(el => (
                 <EventItem key={el.id}>
-                  <div>{getTranslations(el.home_team)}</div>
+                  <div>
+                    {el.home_team.has_logo && (<img src={el.home_team.logo} alt='homeTeamLogo' />)}
+                    {getTranslations(el.home_team)}
+                  </div>
                   <div className="score"> {el.home_score ? el.home_score.current : 0} - {el.away_score ? el.away_score.current : 0}</div>
-                  <div className="awayTeam">{getTranslations(el.away_team)}</div>
+                  <div className="awayTeam">
+                    {el.away_team.has_logo && (<img src={el.away_team.logo} alt='awayTeamLogo' />)}
+                    {getTranslations(el.away_team)}
+                  </div>
                 </EventItem>
               ))}
             </GridItem>
