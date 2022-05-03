@@ -4,9 +4,9 @@ import logo from '../../assets/header/logo.png';
 import NavBar from '../NavBar';
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
 
-function Header(): JSX.Element {
-
+const Header = (): JSX.Element => {
   return (
     <Wrapper>
       <Content>
@@ -22,10 +22,15 @@ function Header(): JSX.Element {
             label: 'Избранное',
             icon: <StarBorderIcon/>,
           },
+          {
+            link: '/news',
+            label: 'Новости',
+            icon: <NewspaperIcon/>,
+          },
         ]}/>
       </Content>
     </Wrapper>
   );
-}
+};
 
 export default Header;

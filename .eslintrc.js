@@ -38,7 +38,6 @@ module.exports = {
 		'@typescript-eslint/no-explicit-any': 0,
 		'@typescript-eslint/unbound-method': 0,
 		'@typescript-eslint/member-ordering': 'warn',
-		'@typescript-eslint/explicit-function-return-type': 'warn',
 		'@typescript-eslint/no-magic-numbers': [
 			'error',
 			{
@@ -54,7 +53,7 @@ module.exports = {
 			'error',
 			{
 				selector: 'default',
-				format: ['camelCase'],
+				format: ['camelCase', 'snake_case'],
 			},
 			{
 				selector: 'function',

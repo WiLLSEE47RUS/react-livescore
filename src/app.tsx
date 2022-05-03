@@ -4,6 +4,7 @@ import { GlobalStyle } from './GlobalStyle';
 import {RouteSwitcher} from './routeSwitcher';
 import {Provider} from 'react-redux';
 import {store} from './store';
+import './flags.css';
 
 const App: FC = () => {
   return (
