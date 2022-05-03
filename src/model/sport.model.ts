@@ -2,7 +2,6 @@ export interface ISportModel {
   id: number;
   slug: string;
   name: string;
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   name_translations?: INameTranslation;
 }
 

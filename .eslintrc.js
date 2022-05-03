@@ -53,7 +53,7 @@ module.exports = {
 			'error',
 			{
 				selector: 'default',
-				format: ['camelCase'],
+				format: ['camelCase', 'snake_case'],
 			},
 			{
 				selector: 'function',

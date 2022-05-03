@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     --activeLinkBackground: #ff9700;
     --white: #fff;
     --lightGray: #e5e5e5;
+    --gray: #a2a2a2;
     --darkBlue: #345193;
     --darkOrange: #981c1c;
   }
@@ -36,5 +37,11 @@ export const GlobalStyle = createGlobalStyle`
   .app-container {
     max-width: var(--containerWidth);
     margin: 0 auto;
+  }
+
+  .datePickerInput {
+    background: var(--gray);
+    border-radius: 15px;
+    width: 180px;
   }
 `;
