@@ -28,8 +28,11 @@ const Events: FC<EventsPropsType> = () => {
   }, [id, sportTypes]);
 
   const { data, isLoading: isSectionsLoading } = useGetSectionsBySportIdQuery(sportId);
-  const { data: eventsData } = useGetEventsBySportIdQuery({ id: sportId, mode: eventsViewMode });
-  console.log(eventsData);
+  const { data: eventsData } = useGetEventsBySportIdQuery({
+    id: sportId,
+    mode: eventsViewMode,
+    date: moment(date).format('YYYY-MM-DD')
+  });
 
   const sections = useMemo(() =>
     data && [...data.data]
@@ -37,7 +40,10 @@ const Events: FC<EventsPropsType> = () => {
         ? a.name_translations.ru.localeCompare(b?.name_translations?.ru) : a.name.localeCompare(b.name))
     || [], [data]);
 
-  const events = useMemo(() => eventsData && [...eventsData.data] || [], [eventsData]);
+  const events = useMemo(() => eventsData && [...eventsData.data]
+    .sort((a, b) => moment(a.start_at, 'YYYY-MM-DD HH:mm:ss')
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+      .isBefore(moment(b.start_at, 'YYYY-MM-DD HH:mm:ss')) ? -1 : 1) || [], [eventsData]);
   console.log(events);
   return (
     <Wrapper>
@@ -91,7 +97,11 @@ const Events: FC<EventsPropsType> = () => {
                     {el.home_team.has_logo && (<img src={el.home_team.logo} alt='homeTeamLogo' />)}
                     {getTranslations(el.home_team)}
                   </div>
-                  <div className="score"> {el.home_score ? el.home_score.current : 0} - {el.away_score ? el.away_score.current : 0}</div>
+                  <div className="score">
+                    {moment(el.start_at, 'YYYY-MM-DD HH:mm:ss').format('HH:mm')} <br/>
+                    {el.home_score ? el.home_score.current : 0} - {el.away_score ? el.away_score.current : 0} <br/>
+                    {el.status}
+                  </div>
                   <div className="awayTeam">
                     {el.away_team.has_logo && (<img src={el.away_team.logo} alt='awayTeamLogo' />)}
                     {getTranslations(el.away_team)}

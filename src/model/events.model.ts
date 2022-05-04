@@ -4,6 +4,7 @@ import { IPeriod, IPeriodsTime } from './periods.model';
 import { ISportModel } from './sport.model';
 import { ITimeDetails } from './timeDetails.model';
 import { IScore } from './score.model';
+import { ILeague } from './league.model';
 
 export interface IEvent {
   aggregated_winner_code?: string,
@@ -25,6 +26,7 @@ export interface IEvent {
   home_team_id: number,
   id: number,
   lasted_period?: string,
+  league?: ILeague,
   league_id: number,
   main_odds?: IOdds,
   medias_count?: number,

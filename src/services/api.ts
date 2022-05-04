@@ -21,7 +21,7 @@ export const API = createApi({
       query: (id) => `/sports/${id}/sections`,
     }),
     getEventsBySportId: builder.query<TFetchedData<IEvent[]>, IGetEventsBySportIdParams>({
-      query: ({ id, mode }) => `/sports/${id}/events${mode === EventsViewModes.ALL ? '' : '/live'}`,
+      query: ({ id, mode, date }) => `/sports/${id}/events${mode === EventsViewModes.ALL ?( '/date/' + date) : '/live'}`,
     }),
   }),
 });
