@@ -3,3 +3,4 @@ export const groupBy = <T>(array: T[], predicate: (v: T) => string | number) =>
     (acc[predicate(value)] ||= []).push(value);
     return acc;
   }, {} as { [key: string]: T[] });
+

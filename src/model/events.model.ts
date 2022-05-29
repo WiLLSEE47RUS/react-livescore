@@ -5,6 +5,7 @@ import { ISportModel } from './sport.model';
 import { ITimeDetails } from './timeDetails.model';
 import { IScore } from './score.model';
 import { ILeague } from './league.model';
+import { EventsStatuses } from '../constants/events.constants';
 
 export interface IEvent {
   aggregated_winner_code?: string,
@@ -46,7 +47,7 @@ export interface IEvent {
   sport: ISportModel,
   sport_id: number,
   start_at: string,
-  status: string,
+  status: EventsStatuses,
   status_lineup?: number,
   status_more: string,
   time_details: ITimeDetails,
