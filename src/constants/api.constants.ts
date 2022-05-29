@@ -4,3 +4,6 @@ export enum ApiVersion{
 }
 
 export const DEFAULT_SPORT_ID = 1;
+
+export const DEFAULT_LIVE_POLLING_INTERVAL = 60000;
+export const DEFAULT_DEBOUNCE = 500;
