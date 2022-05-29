@@ -28,6 +28,8 @@ import { Spinner } from '../../components/Spinner';
 import { setSearchValue } from '../../store/events/events.slice';
 import { Search } from '@mui/icons-material';
 import { useDebounce } from '../../hooks/useDebounce';
+import { eventModalActions } from '../../store/eventModal/eventModal.slice';
+import Event from '../../components/Event';
 
 const Events: FC<EventsPropsType> = () => {
   const [date, setDate] = useState(moment());
@@ -75,6 +77,10 @@ const Events: FC<EventsPropsType> = () => {
 
   const handleChangeSearchValue = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     dispatch(setSearchValue(event.target.value));
+  };
+
+  const handleOpenEventModal = (id: number) => {
+    dispatch(eventModalActions.openEventModal(id));
   };
 
   return (
@@ -138,7 +144,11 @@ const Events: FC<EventsPropsType> = () => {
                 )}
               </EventsHeader>
               {!isEventsLoading && !isEventsFetching ? events.map(el => (
-                <EventItem key={el.id} status={el.status}>
+                <EventItem
+                  key={el.id}
+                  status={el.status}
+                  onClick={() => handleOpenEventModal(el.id)}
+                >
                   <TeamInfo>
                     {el.home_team.has_logo && (<img src={el.home_team.logo} alt='homeTeamLogo' />)}
                     {getTranslations(el.home_team)}
@@ -164,6 +174,7 @@ const Events: FC<EventsPropsType> = () => {
           </Fade>
         </TransitionGroup>
       </Content>
+      <Event/>
     </Wrapper>
   );
 };

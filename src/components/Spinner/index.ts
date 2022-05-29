@@ -6,7 +6,6 @@ export const Spinner = styled.div<{ width: string }>`
   height: ${(props): string => props.width + 'px'};
   width: ${(props): string => props.width + 'px'}; 
   margin: 0 auto;
-  background: var(--midGray);
   border-radius: 50%;
   border: var(--midGray) ${(props): string => `${+props.width * borderPath}` + 'px'} solid;
   border-top-color: var(--activeLinkBackground);

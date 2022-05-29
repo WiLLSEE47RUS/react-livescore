@@ -1,6 +1,6 @@
 export interface TFetchedData<Type = any> {
   data: Type,
-  meta: {
+  meta?: {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     current_page: number,
     from: number,
