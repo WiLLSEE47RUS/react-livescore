@@ -11,7 +11,7 @@ import { EventsStatusesTranslations } from '../../constants/events.constants';
 import { EventItem } from '../../modules/Events/Events.styled';
 
 const style = {
-  position: 'absolute' as const,
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',

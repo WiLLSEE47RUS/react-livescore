@@ -3,9 +3,11 @@ import {
   Content,
   EventItem,
   EventsHeader,
+  EventsList,
   EventsModeButton,
   GridItem,
   SectionItem,
+  SectionsList,
   TeamInfo,
   Wrapper,
 } from './Events.styled';
@@ -21,7 +23,12 @@ import { InputAdornment, TextField } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { FlexContainer } from '../../components/common.styled';
-import { EventsStatusesTranslations, EventsViewModes, EventsViewModesTitle } from '../../constants/events.constants';
+import {
+  EventsStatusesTranslations,
+  EventsViewModes,
+  EventsViewModesTitle,
+  EventTypes,
+} from '../../constants/events.constants';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { DEFAULT_DEBOUNCE, DEFAULT_SPORT_ID } from '../../constants/api.constants';
 import { Spinner } from '../../components/Spinner';
@@ -36,7 +43,7 @@ const Events: FC<EventsPropsType> = () => {
   const [isInit, setIsInit] = useState(false);
   const [eventsViewMode, setEventsViewMode] = useState<EventsViewModes>(EventsViewModes.ALL);
   const debouncedDate = useDebounce(date, DEFAULT_DEBOUNCE);
-  const { id } = useParams();
+  const { id } = useParams<{ id: EventTypes }>();
 
   const { sportTypes } = useAppSelector(state => state.sportTypes);
   const { searchValue } = useAppSelector(state => state.events);
@@ -86,17 +93,19 @@ const Events: FC<EventsPropsType> = () => {
   return (
     <Wrapper>
       <Content>
-        <GridItem>
-          {!isSectionsLoading && !isSectionsFetching ? sections.map(section => (
-            <SectionItem key={section.slug}>
-              <span className={`flags flags--category flags--md flags--${section.flag}`} />
-              {getTranslations(section)}
-            </SectionItem>
-          )) : <Spinner width='50' />}
+        <GridItem id={id || EventTypes.FOOTBALL}>
+          <SectionsList>
+            {!isSectionsLoading && !isSectionsFetching ? sections.map(section => (
+              <SectionItem key={section.slug}>
+                <span className={`flags flags--category flags--md flags--${section.flag}`} />
+                {getTranslations(section)}
+              </SectionItem>
+            )) : <Spinner width='50' />}
+          </SectionsList>
         </GridItem>
         <TransitionGroup appear enter exit key={id}>
           <Fade>
-            <GridItem>
+            <GridItem id={id || EventTypes.FOOTBALL}>
               <EventsHeader>
                 <FlexContainer>
                   <EventsModeButton
@@ -143,38 +152,40 @@ const Events: FC<EventsPropsType> = () => {
                   </LocalizationProvider>
                 )}
               </EventsHeader>
-              {!isEventsLoading && !isEventsFetching ? events.map(el => (
-                <EventItem
-                  key={el.id}
-                  status={el.status}
-                  onClick={() => handleOpenEventModal(el.id)}
-                >
-                  <TeamInfo>
-                    {el.home_team.has_logo && (<img src={el.home_team.logo} alt='homeTeamLogo' />)}
-                    {getTranslations(el.home_team)}
-                  </TeamInfo>
-                  <div className='score'>
-                    <span>
-                      {moment(el.start_at, 'YYYY-MM-DD HH:mm:ss').format('HH:mm')}
-                    </span>
-                    {el.home_score ? el.home_score.current : 0} - {el.away_score ? el.away_score.current : 0}
-                    <span className='status'>
-                      {EventsStatusesTranslations[el.status]}
-                    </span>
-                  </div>
-                  <TeamInfo className='awayTeam'>
-                    {el.away_team.has_logo && (<img src={el.away_team.logo} alt='awayTeamLogo' />)}
-                    {getTranslations(el.away_team)}
-                  </TeamInfo>
-                </EventItem>
-              )) : (
-                <Spinner width='50' />
-              )}
+              <EventsList>
+                {!isEventsLoading && !isEventsFetching ? events.map(el => (
+                  <EventItem
+                    key={el.id}
+                    status={el.status}
+                    onClick={() => handleOpenEventModal(el.id)}
+                  >
+                    <TeamInfo>
+                      {el.home_team.has_logo && (<img src={el.home_team.logo} alt='homeTeamLogo' />)}
+                      {getTranslations(el.home_team)}
+                    </TeamInfo>
+                    <div className='score'>
+                      <span>
+                        {moment(el.start_at, 'YYYY-MM-DD HH:mm:ss').format('HH:mm')}
+                      </span>
+                      {el.home_score ? el.home_score.current : 0} - {el.away_score ? el.away_score.current : 0}
+                      <span className='status'>
+                        {EventsStatusesTranslations[el.status]}
+                      </span>
+                    </div>
+                    <TeamInfo className='awayTeam'>
+                      {el.away_team.has_logo && (<img src={el.away_team.logo} alt='awayTeamLogo' />)}
+                      {getTranslations(el.away_team)}
+                    </TeamInfo>
+                  </EventItem>
+                )) : (
+                  <Spinner width='50' />
+                )}
+              </EventsList>
             </GridItem>
           </Fade>
         </TransitionGroup>
       </Content>
-      <Event/>
+      <Event />
     </Wrapper>
   );
 };
