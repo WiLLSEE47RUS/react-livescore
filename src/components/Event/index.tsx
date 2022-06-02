@@ -4,11 +4,11 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import { eventModalActions, eventModalSelector } from '../../store/eventModal/eventModal.slice';
 import { useGetEventDataByIdQuery } from '../../services/api';
 import { Spinner } from '../Spinner';
-import { FlexContainer } from '../common.styled';
 import { getTranslations } from '../../utils/translations';
-import moment from 'moment';
 import { EventsStatusesTranslations } from '../../constants/events.constants';
 import { EventItem } from '../../modules/Events/Events.styled';
+import { DEFAULT_TIME_FORMAT, DEFAULT_TIME_ZONE } from '../../constants/common.constants';
+import { formatEventStartDate } from '../../utils/common';
 
 const style = {
   position: 'absolute',
@@ -50,7 +50,7 @@ const Event: FC = () => {
             </div>
             <div className='score'>
               <span>
-                {moment(eventsData.start_at, 'YYYY-MM-DD HH:mm:ss').format('HH:mm')}
+                {formatEventStartDate(eventsData.start_at).tz(DEFAULT_TIME_ZONE).format(DEFAULT_TIME_FORMAT)}
               </span>
               {eventsData.home_score ? eventsData.home_score.current : 0}
               -

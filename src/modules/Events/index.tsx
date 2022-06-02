@@ -18,7 +18,7 @@ import { TransitionGroup } from 'react-transition-group';
 import { useGetEventsBySportIdQuery, useGetSectionsBySportIdQuery } from '../../services/api';
 import { getTranslations } from '../../utils/translations';
 import { DatePicker } from '@mui/x-date-pickers';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { InputAdornment, TextField } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
@@ -37,6 +37,8 @@ import { Search } from '@mui/icons-material';
 import { useDebounce } from '../../hooks/useDebounce';
 import { eventModalActions } from '../../store/eventModal/eventModal.slice';
 import Event from '../../components/Event';
+import { DEFAULT_TIME_FORMAT, DEFAULT_TIME_ZONE } from '../../constants/common.constants';
+import { formatEventStartDate } from '../../utils/common';
 
 const Events: FC<EventsPropsType> = () => {
   const [date, setDate] = useState(moment());
@@ -165,7 +167,7 @@ const Events: FC<EventsPropsType> = () => {
                     </TeamInfo>
                     <div className='score'>
                       <span>
-                        {moment(el.start_at, 'YYYY-MM-DD HH:mm:ss').format('HH:mm')}
+                        {formatEventStartDate(el.start_at).tz(DEFAULT_TIME_ZONE).format(DEFAULT_TIME_FORMAT)}
                       </span>
                       {el.home_score ? el.home_score.current : 0} - {el.away_score ? el.away_score.current : 0}
                       <span className='status'>

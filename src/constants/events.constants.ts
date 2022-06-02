@@ -34,9 +34,9 @@ export const EventsStatusesTranslations = {
 export const EventsStatusesColors = {
   [EventsStatuses.NOT_STARTED]: 'var(--white)',
   [EventsStatuses.INPROGRESS]: 'var(--lightGreen)',
-  [EventsStatuses.FINISHED]: 'var(--darkBlue)',
-  [EventsStatuses.POSTPONED]: 'var(--midGray)',
-  [EventsStatuses.CANCELED]: 'var(--darkOrange)',
+  [EventsStatuses.FINISHED]: 'var(--lightCyan)',
+  [EventsStatuses.POSTPONED]: 'var(--lightGray)',
+  [EventsStatuses.CANCELED]: 'var(--lightRed)',
 };
 
 
