@@ -19,7 +19,7 @@ import { useGetEventsBySportIdQuery, useGetSectionsBySportIdQuery } from '../../
 import { getTranslations } from '../../utils/translations';
 import { DatePicker } from '@mui/x-date-pickers';
 import moment from 'moment-timezone';
-import { InputAdornment, TextField } from '@mui/material';
+import { InputAdornment, TextField, Tooltip } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { FlexContainer } from '../../components/common.styled';
@@ -32,7 +32,7 @@ import {
 import { useAppDispatch, useAppSelector } from '../../store';
 import { DEFAULT_DEBOUNCE, DEFAULT_SPORT_ID } from '../../constants/api.constants';
 import { Spinner } from '../../components/Spinner';
-import { setSearchValue } from '../../store/events/events.slice';
+import { setSearchValue, setSelectedSection } from '../../store/events/events.slice';
 import { Search } from '@mui/icons-material';
 import { useDebounce } from '../../hooks/useDebounce';
 import { eventModalActions } from '../../store/eventModal/eventModal.slice';
@@ -48,7 +48,7 @@ const Events: FC<EventsPropsType> = () => {
   const { id } = useParams<{ id: EventTypes }>();
 
   const { sportTypes } = useAppSelector(state => state.sportTypes);
-  const { searchValue } = useAppSelector(state => state.events);
+  const { searchValue, selectedSectionId } = useAppSelector(state => state.events);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -82,7 +82,9 @@ const Events: FC<EventsPropsType> = () => {
       || getTranslations(event.away_team).toLowerCase().includes(searchValue.toLowerCase()))
     .sort((a, b) => moment(a.start_at, 'YYYY-MM-DD HH:mm:ss')
       // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-      .isBefore(moment(b.start_at, 'YYYY-MM-DD HH:mm:ss')) ? -1 : 1) || [], [eventsData, searchValue]);
+      .isBefore(moment(b.start_at, 'YYYY-MM-DD HH:mm:ss')) ? -1 : 1)
+    .filter(event => event.section.id === selectedSectionId || !selectedSectionId) || [],
+  [eventsData, searchValue, selectedSectionId]);
 
   const handleChangeSearchValue = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     dispatch(setSearchValue(event.target.value));
@@ -92,16 +94,29 @@ const Events: FC<EventsPropsType> = () => {
     dispatch(eventModalActions.openEventModal(id));
   };
 
+  const handleSelectSection = (id: number) => {
+    dispatch(setSelectedSection(id));
+  };
+
   return (
     <Wrapper>
       <Content>
         <GridItem id={id || EventTypes.FOOTBALL}>
           <SectionsList>
             {!isSectionsLoading && !isSectionsFetching ? sections.map(section => (
-              <SectionItem key={section.slug}>
-                <span className={`flags flags--category flags--md flags--${section.flag}`} />
-                {getTranslations(section)}
-              </SectionItem>
+              <Tooltip
+                key={section.slug}
+                title={'Выбрать категорию: ' + getTranslations(section)}
+                placement="top-end"
+              >
+                <SectionItem
+                  onClick={() => handleSelectSection(section.id)}
+                  isActive={section.id === selectedSectionId}
+                >
+                  <span className={`flags flags--category flags--md flags--${section.flag}`} />
+                  {getTranslations(section)}
+                </SectionItem>
+              </Tooltip>
             )) : <Spinner width='50' />}
           </SectionsList>
         </GridItem>

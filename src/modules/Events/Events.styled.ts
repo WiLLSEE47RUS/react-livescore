@@ -32,13 +32,19 @@ export const GridItem = styled.div<{id: EventTypes}>`
   }
 `;
 
-export const SectionItem = styled(FlexContainer)`
+export const SectionItem = styled(FlexContainer)<{isActive: boolean}>`
   column-gap: 5px;
   align-items: center;
   justify-content: flex-start;
   font-size: 16px;
   font-weight: 700;
   color: var(--white);
+  background: ${props => props.isActive ? 'rgba(255,255,255,0.4)' : 'none'};
+  transition: all 0.3s ease;
+  &:hover {
+    background: ${props => !props.isActive ? 'rgba(0,0,0,0.4)' : 'rgba(255,255,255,0.4)'};
+    cursor: pointer;
+  }
 `;
 
 export const EventsHeader = styled(FlexContainer)`

@@ -12,7 +12,7 @@ export const API = createApi({
     baseUrl: baseURL,
     prepareHeaders: headers => {
       headers.set('x-rapidapi-host', 'sportscore1.p.rapidapi.com');
-      headers.set('x-rapidapi-key', '6288613dd3msha86578bf731ee12p163163jsn613e83c122df');
+      headers.set('x-rapidapi-key', 'ce7bb67ff1msh0bc2e2801bafeaap19a4b8jsn953217cb4b5b');
       return headers;
     },
   }),
