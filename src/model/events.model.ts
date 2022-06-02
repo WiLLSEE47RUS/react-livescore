@@ -6,6 +6,7 @@ import { ITimeDetails } from './timeDetails.model';
 import { IScore } from './score.model';
 import { ILeague } from './league.model';
 import { EventsStatuses } from '../constants/events.constants';
+import { ISectionModel } from './sections.model';
 
 export interface IEvent {
   aggregated_winner_code?: string,
@@ -32,6 +33,7 @@ export interface IEvent {
   main_odds?: IOdds,
   medias_count?: number,
   name: string,
+  section: ISectionModel,
   periods?: IPeriod,
   periods_time?: IPeriodsTime,
   priority: number,

@@ -14,6 +14,8 @@ export const GlobalStyle = createGlobalStyle`
     --darkBlueTP: #34519320;
     --darkOrange: #981c1c;
     --lightGreen: #49ff00;
+    --lightRed: #ff000d;
+    --lightCyan: #00fff0;
     --color-scrollbar: #bdbdbd;
     --color-scrollbar-hover: #b3b3b3;
   }

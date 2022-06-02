@@ -3,12 +3,14 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { sportTypeSlice } from './sportTypes/sportTypes.slice';
 import { API } from '../services/api';
 import { eventsSlice } from './events/events.slice';
+import { eventModalSlice } from './eventModal/eventModal.slice';
 
 
 export const store = configureStore({
   reducer: {
     sportTypes: sportTypeSlice.reducer,
     events: eventsSlice.reducer,
+    eventModal: eventModalSlice.reducer,
     [API.reducerPath]: API.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(API.middleware),

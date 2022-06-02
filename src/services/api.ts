@@ -12,7 +12,7 @@ export const API = createApi({
     baseUrl: baseURL,
     prepareHeaders: headers => {
       headers.set('x-rapidapi-host', 'sportscore1.p.rapidapi.com');
-      headers.set('x-rapidapi-key', 'f7c3c72c18msh967fd33ec16c0fbp18a933jsn6e9e2ea14099');
+      headers.set('x-rapidapi-key', 'ce7bb67ff1msh0bc2e2801bafeaap19a4b8jsn953217cb4b5b');
       return headers;
     },
   }),
@@ -23,7 +23,10 @@ export const API = createApi({
     getEventsBySportId: builder.query<TFetchedData<IEvent[]>, IGetEventsBySportIdParams>({
       query: ({ id, mode, date }) => `/sports/${id}/events${mode === EventsViewModes.ALL ?( '/date/' + date) : '/live'}`,
     }),
+    getEventDataById: builder.query<TFetchedData<IEvent>, number | null>({
+      query: (id) => `/events/${String(id)}`,
+    }),
   }),
 });
 
-export const { useGetSectionsBySportIdQuery, useGetEventsBySportIdQuery } = API;
+export const { useGetSectionsBySportIdQuery, useGetEventsBySportIdQuery, useGetEventDataByIdQuery } = API;
