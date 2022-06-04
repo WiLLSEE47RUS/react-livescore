@@ -1,6 +1,6 @@
 import React from 'react';
 import {Content, Wrapper, Logo} from './Header.styled';
-import logo from '../../assets/header/logo.png';
+import logo from '../../assets/header/logo.svg';
 import NavBar from '../NavBar';
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import StarBorderIcon from '@mui/icons-material/StarBorder';

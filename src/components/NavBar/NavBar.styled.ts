@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
     background: var(--activeLinkBackground);
 
     span {
-      color: #333;
+      color: var(--darkGray)
     }
   }
 `;

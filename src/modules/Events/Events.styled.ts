@@ -73,6 +73,7 @@ export const SectionsList = styled.div`
   padding: 5px;
   row-gap: 5px;
   overflow-y: scroll;
+  height: 100%    ;
 `;
 
 export const EventsList = styled.div`

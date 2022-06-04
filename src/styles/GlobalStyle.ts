@@ -3,9 +3,10 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
   :root {
     --midGray: #222;
+    --darkGray: #111;
     --midGrayTP: #22222220;
     --containerWidth: 1140px;
-    --navLinkColor: #ffffff80;
+    --navLinkColor: #bbb;
     --activeLinkBackground: #ff9700;
     --white: #fff;
     --lightGray: #e5e5e5;
@@ -54,7 +55,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: var(--midGray);
+    background: var(--darkGray);
   }
 
   .app-wrapper {
