@@ -20,7 +20,7 @@ export const MatchInfoViewModesWrapper = styled.div`
   align-items: flex-end;
   padding: 5px 0;
 `;
-export const MatchInfoViewModeButton = styled.div<{ mode: MatchInfoViewModes, active?: boolean }>`
+export const MatchInfoViewModeButton = styled.div<{ mode?: MatchInfoViewModes, active?: boolean }>`
   display: flex;
   min-height: 40px;
   padding: 0 5px;

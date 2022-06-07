@@ -1,23 +1,16 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC } from 'react';
 import { H2HEventItem, H2HEventsWrapper, H2HTeamInfo } from './H2HEvents.styled';
-import { useGetH2HEventsQuery } from '../../services/api';
 import { getTranslations } from '../../utils/translations';
 import { formatEventStartDate } from '../../utils/common';
 import { DEFAULT_EVENT_TIME_FORMAT, DEFAULT_TIME_ZONE } from '../../constants/common.constants';
-import { EventsStatusesTranslations } from '../../constants/events.constants';
+import { EventsStatusesTranslations, EventTypes } from '../../constants/events.constants';
 import { eventModalActions } from '../../store/eventModal/eventModal.slice';
 import { useAppDispatch } from '../../store';
 import { IEvent } from '../../model/events.model';
 
-const H2HEvents: FC<{ eventData: IEvent }> = ({ eventData}) => {
+const H2HEvents: FC<{ events: IEvent[], eventData: IEvent }> = ({ events, eventData }) => {
 
-  const { data } = useGetH2HEventsQuery(
-    { homeTeam: eventData.home_team_id, awayTeam: eventData.away_team_id },
-    { skip: !eventData.home_team_id || !eventData.away_team_id},
-  );
   const dispatch = useAppDispatch();
-
-  const events = useMemo(() => data && [...data.data].filter(event => event.id !== eventData.id) || [], [data, eventData]);
 
   const handleOpenEventModal = (id: number) => {
     dispatch(eventModalActions.openEventModal(id));
@@ -25,7 +18,7 @@ const H2HEvents: FC<{ eventData: IEvent }> = ({ eventData}) => {
 
   return (
     <H2HEventsWrapper>
-      <h2>Другие встречи команд</h2>
+      <h2>Другие встречи {eventData.sport.slug === EventTypes.TENNIS ? 'игроков' : 'команд'}</h2>
       {events.map(el => (
         <H2HEventItem
           key={el.id}
