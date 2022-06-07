@@ -5,6 +5,7 @@ import { TFetchedData } from '../model/common.model';
 import { IEvent } from '../model/events.model';
 import { IGetEventsBySportIdParams } from '../model/api.model';
 import { EventsViewModes } from '../constants/events.constants';
+import { ILineupModel } from '../model/lineup.model';
 
 export const API = createApi({
   reducerPath: 'API',
@@ -12,7 +13,7 @@ export const API = createApi({
     baseUrl: baseURL,
     prepareHeaders: headers => {
       headers.set('x-rapidapi-host', 'sportscore1.p.rapidapi.com');
-      headers.set('x-rapidapi-key', 'ce7bb67ff1msh0bc2e2801bafeaap19a4b8jsn953217cb4b5b');
+      headers.set('x-rapidapi-key', 'e352b9bf2bmshfcf8a7ebfc9c18bp1ef310jsn8a066fce1f30');
       return headers;
     },
   }),
@@ -26,7 +27,16 @@ export const API = createApi({
     getEventDataById: builder.query<TFetchedData<IEvent>, number | null>({
       query: (id) => `/events/${String(id)}`,
     }),
+    getEventLineupsById: builder.query<TFetchedData<ILineupModel[]>, number | null>({
+      query: (id) => `/events/${String(id)}/lineups`,
+    }),
   }),
 });
 
-export const { useGetSectionsBySportIdQuery, useGetEventsBySportIdQuery, useGetEventDataByIdQuery } = API;
+export const {
+  useGetSectionsBySportIdQuery,
+  useGetEventsBySportIdQuery,
+  useGetEventDataByIdQuery,
+  useGetEventLineupsByIdQuery,
+} = API;
+

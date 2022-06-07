@@ -1,7 +1,7 @@
 import {FC} from 'react';
 import {Routes, Route, Navigate} from 'react-router';
-import SportTypes from './components/SportTypes';
-import Events from './modules/Events';
+import SportTypes from './SportTypes';
+import Events from '../modules/Events';
 
 export const RouteSwitcher: FC = () => {
   return (
@@ -22,6 +22,5 @@ export const RouteSwitcher: FC = () => {
         </Routes>
       </div>
     </div>
-
   );
 };

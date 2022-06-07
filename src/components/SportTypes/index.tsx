@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import {Container} from './SportTypes.styled';
+import {SportTypesContainer} from './SportTypes.styled';
 import {useSportTypesFetch} from '../../hooks/useSportTypesFetch';
 import { useAppDispatch, useAppSelector } from '../../store';
 import {Spinner} from '../Spinner';
@@ -22,7 +22,7 @@ const SportTypes: FC = () => {
 
   return (
     <>
-      <Container>
+      <SportTypesContainer>
         {!loading && !error ?
           (
             <>
@@ -32,7 +32,7 @@ const SportTypes: FC = () => {
           ) :
           <Spinner width="50"/>
         }
-      </Container>
+      </SportTypesContainer>
       <Outlet/>
     </>
 

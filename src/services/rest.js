@@ -5,7 +5,7 @@ import {getBaseUrl, paramsSerializer} from '../utils/url';
 export const getHeader = () => {
   return {
     'x-rapidapi-host': 'sportscore1.p.rapidapi.com',
-    'x-rapidapi-key': 'ce7bb67ff1msh0bc2e2801bafeaap19a4b8jsn953217cb4b5b'
+    'x-rapidapi-key': 'e352b9bf2bmshfcf8a7ebfc9c18bp1ef310jsn8a066fce1f30'
   };
 };
 

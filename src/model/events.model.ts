@@ -7,6 +7,8 @@ import { IScore } from './score.model';
 import { ILeague } from './league.model';
 import { EventsStatuses } from '../constants/events.constants';
 import { ISectionModel } from './sections.model';
+import { IChallengeModel } from './challenge.model';
+import { IVenueModel } from './venue.model';
 
 export interface IEvent {
   aggregated_winner_code?: string,
@@ -15,7 +17,9 @@ export interface IEvent {
   away_team: ITeam,
   away_team_id: number,
   cards_code: string,
+  challenge: IChallengeModel;
   challenge_id: number,
+  venue: IVenueModel;
   coverage: number,
   cup_match_in_round?: number,
   cup_match_order?: number,

@@ -12,9 +12,11 @@ export const GlobalStyle = createGlobalStyle`
     --lightGray: #e5e5e5;
     --gray: #a2a2a2;
     --darkBlue: #345193;
+    --blue: #5989ff;
     --darkBlueTP: #34519320;
     --darkOrange: #981c1c;
     --lightGreen: #49ff00;
+    --green: #007c06;
     --lightRed: #ff000d;
     --lightCyan: #00fff0;
     --color-scrollbar: #bdbdbd;

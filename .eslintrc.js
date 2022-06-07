@@ -48,45 +48,6 @@ module.exports = {
 				ignore: [0, 1, 2, 3, 4, 5, 12, 24, 60, 100, 1000, 2000, 10000],
 			},
 		],
-
-		'@typescript-eslint/naming-convention': [
-			'error',
-			{
-				selector: 'default',
-				format: ['camelCase', 'snake_case'],
-			},
-			{
-				selector: 'function',
-				format: ['camelCase', 'PascalCase'],
-			},
-			{
-				selector: 'variable',
-				format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
-			},
-			{
-				selector: 'parameter',
-				format: ['camelCase'],
-				leadingUnderscore: 'allow',
-			},
-			{
-				selector: 'memberLike',
-				modifiers: ['private'],
-				format: ['camelCase'],
-				leadingUnderscore: 'require',
-			},
-			{
-				selector: 'method',
-				format: ['camelCase'],
-			},
-			{
-				selector: 'enumMember',
-				format: ['PascalCase', 'UPPER_CASE'],
-			},
-			{
-				selector: 'typeLike',
-				format: ['PascalCase'],
-			},
-		],
 		"react/react-in-jsx-scope": "off",
 		'indent': [
 			'error',

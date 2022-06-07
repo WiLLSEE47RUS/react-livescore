@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const NavBarWrapper = styled.div`
   max-height: 100%;
   display: flex;
   align-items: center;
