@@ -49,6 +49,7 @@ export const EventsModeButton = styled.div<{ mode: EventsViewModes, active?: boo
 `;
 export const EventItem = styled.div<{ status: EventsStatuses }>`
   display: grid;
+  width: 100%;
   grid-template-columns: 1fr 150px 1fr;
   justify-content: center;
   align-items: center;

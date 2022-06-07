@@ -9,6 +9,7 @@ import { MatchInfoViewModes, MatchInfoViewModesTitle } from '../../constants/eve
 import { IEvent } from '../../model/events.model';
 import { useGetEventLineupsByIdQuery } from '../../services/api';
 import MatchInfoLineup from '../MatchInfoLineup';
+import H2HEvents from '../H2HEvents';
 
 const MatchInfo: FC<{ eventData: IEvent }> = ({ eventData }) => {
   const [selectedMatchInfoViewMode, setSelectedMatchInfoViewMode] = useState(MatchInfoViewModes.LINEUPS);
@@ -52,6 +53,9 @@ const MatchInfo: FC<{ eventData: IEvent }> = ({ eventData }) => {
       <MatchInfoContent>
         {selectedMatchInfoViewMode === MatchInfoViewModes.LINEUPS && (homeTeamLineup && awayTeamLineup)  && (
           <MatchInfoLineup homeTeamLineup={homeTeamLineup} awayTeamLineup={awayTeamLineup} eventData={eventData}/>
+        )}
+        {selectedMatchInfoViewMode === MatchInfoViewModes.H2H && (
+          <H2HEvents eventData={eventData}/>
         )}
       </MatchInfoContent>
     </MatchInfoWrapper>

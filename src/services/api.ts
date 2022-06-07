@@ -27,6 +27,9 @@ export const API = createApi({
     getEventDataById: builder.query<TFetchedData<IEvent>, number | null>({
       query: (id) => `/events/${String(id)}`,
     }),
+    getH2HEvents: builder.query<TFetchedData<IEvent[]>, { homeTeam: number, awayTeam: number }>({
+      query: ({ homeTeam, awayTeam }) => `/teams/${String(homeTeam)}/h2h-events/${String(awayTeam)}`,
+    }),
     getEventLineupsById: builder.query<TFetchedData<ILineupModel[]>, number | null>({
       query: (id) => `/events/${String(id)}/lineups`,
     }),
@@ -38,5 +41,6 @@ export const {
   useGetEventsBySportIdQuery,
   useGetEventDataByIdQuery,
   useGetEventLineupsByIdQuery,
+  useGetH2HEventsQuery,
 } = API;
 
