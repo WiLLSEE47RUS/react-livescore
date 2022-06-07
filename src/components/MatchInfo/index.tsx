@@ -11,6 +11,7 @@ import { useGetEventLineupsByIdQuery, useGetH2HEventsQuery } from '../../service
 import MatchInfoLineup from '../MatchInfoLineup';
 import H2HEvents from '../H2HEvents';
 import MatchStatistics from '../MatchStatistics';
+import MatchIncidents from '../MatchIncidents';
 
 const MatchInfo: FC<{ eventData: IEvent }> = ({ eventData }) => {
   const [selectedMatchInfoViewMode, setSelectedMatchInfoViewMode] = useState<MatchInfoViewModes | null>(null);
@@ -53,6 +54,13 @@ const MatchInfo: FC<{ eventData: IEvent }> = ({ eventData }) => {
             {MatchInfoViewModesTitle[MatchInfoViewModes.LINEUPS]}
           </MatchInfoViewModeButton>
         )}
+        <MatchInfoViewModeButton
+          active={selectedMatchInfoViewMode === MatchInfoViewModes.INCIDENTS}
+          mode={MatchInfoViewModes.INCIDENTS}
+          onClick={() => setSelectedMatchInfoViewMode(MatchInfoViewModes.INCIDENTS)}
+        >
+          {MatchInfoViewModesTitle[MatchInfoViewModes.INCIDENTS]}
+        </MatchInfoViewModeButton>
         {!!h2hevents.length && (
           <MatchInfoViewModeButton
             active={selectedMatchInfoViewMode === MatchInfoViewModes.H2H}
@@ -72,6 +80,9 @@ const MatchInfo: FC<{ eventData: IEvent }> = ({ eventData }) => {
         )}
         {selectedMatchInfoViewMode === MatchInfoViewModes.STATISTICS && (
           <MatchStatistics eventId={eventData.id}/>
+        )}
+        {selectedMatchInfoViewMode === MatchInfoViewModes.INCIDENTS && (
+          <MatchIncidents eventData={eventData}/>
         )}
       </MatchInfoContent>
     </MatchInfoWrapper>

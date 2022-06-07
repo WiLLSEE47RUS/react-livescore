@@ -7,6 +7,7 @@ import { IGetEventsBySportIdParams } from '../model/api.model';
 import { EventsViewModes } from '../constants/events.constants';
 import { ILineupModel } from '../model/lineup.model';
 import { IStatisticsModel } from '../model/statistics.model';
+import { IIncidentsModel } from '../model/incidents.model';
 
 export const API = createApi({
   reducerPath: 'API',
@@ -34,7 +35,7 @@ export const API = createApi({
     getEventLineupsById: builder.query<TFetchedData<ILineupModel[]>, number | null>({
       query: (id) => `/events/${String(id)}/lineups`,
     }),
-    getEventIncidentsById: builder.query<TFetchedData<ILineupModel[]>, number | null>({
+    getEventIncidentsById: builder.query<TFetchedData<IIncidentsModel[]>, number | null>({
       query: (id) => `/events/${String(id)}/incidents`,
     }),
     getEventStatisticsById: builder.query<TFetchedData<IStatisticsModel[]>, number | null>({
@@ -50,5 +51,6 @@ export const {
   useGetEventLineupsByIdQuery,
   useGetH2HEventsQuery,
   useGetEventStatisticsByIdQuery,
+  useGetEventIncidentsByIdQuery,
 } = API;
 

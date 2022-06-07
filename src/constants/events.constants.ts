@@ -95,12 +95,14 @@ export enum MatchInfoViewModes {
   LINEUPS = 'LINEUPS',
   H2H = 'H2H',
   STATISTICS = 'STATISTICS',
+  INCIDENTS = 'INCIDENTS',
 }
 
 export const MatchInfoViewModesTitle = {
   [MatchInfoViewModes.LINEUPS]: 'Составы',
   [MatchInfoViewModes.H2H]: 'H2H',
   [MatchInfoViewModes.STATISTICS]: 'Статистика',
+  [MatchInfoViewModes.INCIDENTS]: 'События',
 };
 
 

@@ -12,7 +12,6 @@ import { groupBy } from '../../utils/common';
 const MatchStatistics: FC<{ eventId: number }> = ({ eventId }) => {
   const { data } = useGetEventStatisticsByIdQuery(eventId);
   const statistics = useMemo(() => data && [...data.data] || [], [data]);
-  console.log(statistics);
   const statisticsViewModes = useMemo(() => [...new Set(statistics.map(el => el.period))], [statistics]);
   const [selectedMatchInfoViewMode, setSelectedMatchInfoViewMode] = useState<string | null>(null);
 
