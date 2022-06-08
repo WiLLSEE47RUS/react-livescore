@@ -3,6 +3,7 @@ import {Routes, Route, Navigate} from 'react-router';
 import SportTypes from './SportTypes';
 import Events from '../modules/Events';
 import Favourites from '../modules/Favourites';
+import News from '../modules/News';
 
 export const RouteSwitcher: FC = () => {
   return (
@@ -13,7 +14,7 @@ export const RouteSwitcher: FC = () => {
             <Route path=":id" element={<Events />} />
           </Route>
           <Route path="/favourites" element={<Favourites />}/>
-          <Route path="/news" element={<p>news</p>}/>
+          <Route path="/news" element={<News />}/>
           <Route
             path="*"
             element={
