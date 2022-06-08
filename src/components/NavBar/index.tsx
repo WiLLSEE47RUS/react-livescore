@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { INavBarProps } from './NavBar.types';
-import { Wrapper } from './NavBar.styled';
+import { NavBarWrapper } from './NavBar.styled';
 import NavLink from '../NavLink';
 
 const NavBar: FC<INavBarProps> = (props) => {
@@ -11,9 +11,9 @@ const NavBar: FC<INavBarProps> = (props) => {
     );
   });
   return (
-    <Wrapper>
+    <NavBarWrapper>
       {links}
-    </Wrapper>
+    </NavBarWrapper>
   );
 };
 export default NavBar;

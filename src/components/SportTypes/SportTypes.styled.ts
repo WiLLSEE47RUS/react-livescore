@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const SportTypesContainer = styled.div`
   height: 60px;
   display: flex;
   font-size: 1.5em;

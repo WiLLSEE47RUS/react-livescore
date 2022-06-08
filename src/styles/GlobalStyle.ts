@@ -3,17 +3,20 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
   :root {
     --midGray: #222;
+    --darkGray: #111;
     --midGrayTP: #22222220;
     --containerWidth: 1140px;
-    --navLinkColor: #ffffff80;
+    --navLinkColor: #bbb;
     --activeLinkBackground: #ff9700;
     --white: #fff;
     --lightGray: #e5e5e5;
     --gray: #a2a2a2;
     --darkBlue: #345193;
+    --blue: #5989ff;
     --darkBlueTP: #34519320;
     --darkOrange: #981c1c;
     --lightGreen: #49ff00;
+    --green: #007c06;
     --lightRed: #ff000d;
     --lightCyan: #00fff0;
     --color-scrollbar: #bdbdbd;
@@ -54,7 +57,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: var(--midGray);
+    background: var(--darkGray);
   }
 
   .app-wrapper {

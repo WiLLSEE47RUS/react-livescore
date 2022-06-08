@@ -16,7 +16,7 @@ export const LinkWrapper = styled(NavLink)`
   justify-content: center;
   text-decoration: none;
 `;
-export const Content = styled.span`
+export const LinkContent = styled.span`
   color: var(--navLinkColor);
   font-size: 1.25em;
   text-decoration: none;
