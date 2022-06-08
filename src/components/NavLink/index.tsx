@@ -1,16 +1,16 @@
-import { FC } from 'react';
-import { INavLink } from './NavLink.types';
-import { Content, Wrapper } from './NavLink.styled';
+import {FC} from 'react';
+import {INavLink} from './NavLink.types';
+import {LinkContent, LinkWrapper} from './NavLink.styled';
 
 const NavLink: FC<INavLink> = (props) => {
-  const { link, label, icon } = props;
+  const {link, label, icon} = props;
   return (
-    <Wrapper>
-      <Content href={link}>
+    <LinkWrapper to={link}>
+      <LinkContent>
         {icon}
         {label}
-      </Content>
-    </Wrapper>
+      </LinkContent>
+    </LinkWrapper>
   );
 };
 export default NavLink;

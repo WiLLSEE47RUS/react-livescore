@@ -1,30 +1,36 @@
 import React from 'react';
-import { Content, Wrapper, Logo } from './Header.styled';
-import logo from '../../assets/header/logo.png';
+import {HeaderContent, HeaderWrapper, Logo} from './Header.styled';
+import logo from '../../assets/header/logo.svg';
 import NavBar from '../NavBar';
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
 
-function Header(): JSX.Element {
+const Header = (): JSX.Element => {
   return (
-    <Wrapper>
-      <Content>
-        <Logo src={logo} alt='logo' />
+    <HeaderWrapper>
+      <HeaderContent>
+        <Logo src={logo} alt="logo"/>
         <NavBar linkObjects={[
           {
-            link: '/',
+            link: '/events',
             label: 'События',
-            icon: <SportsSoccerIcon />,
+            icon: <SportsSoccerIcon/>,
           },
           {
             link: '/favourites',
             label: 'Избранное',
-            icon: <StarBorderIcon />,
+            icon: <StarBorderIcon/>,
           },
-        ]} />
-      </Content>
-    </Wrapper>
+          {
+            link: '/news',
+            label: 'Новости',
+            icon: <NewspaperIcon/>,
+          },
+        ]}/>
+      </HeaderContent>
+    </HeaderWrapper>
   );
-}
+};
 
 export default Header;
