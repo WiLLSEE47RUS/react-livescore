@@ -12,6 +12,7 @@ import MatchInfoLineup from '../MatchInfoLineup';
 import H2HEvents from '../H2HEvents';
 import MatchStatistics from '../MatchStatistics';
 import MatchIncidents from '../MatchIncidents';
+import StadiumInfo from '../StadiumInfo';
 
 const MatchInfo: FC<{ eventData: IEvent }> = ({ eventData }) => {
   const [selectedMatchInfoViewMode, setSelectedMatchInfoViewMode] = useState<MatchInfoViewModes | null>(null);
@@ -70,6 +71,15 @@ const MatchInfo: FC<{ eventData: IEvent }> = ({ eventData }) => {
             {MatchInfoViewModesTitle[MatchInfoViewModes.H2H]}
           </MatchInfoViewModeButton>
         )}
+        {!!eventData?.venue?.stadium && (
+          <MatchInfoViewModeButton
+            active={selectedMatchInfoViewMode === MatchInfoViewModes.STADIUM}
+            mode={MatchInfoViewModes.STADIUM}
+            onClick={() => setSelectedMatchInfoViewMode(MatchInfoViewModes.STADIUM)}
+          >
+            {MatchInfoViewModesTitle[MatchInfoViewModes.STADIUM]}
+          </MatchInfoViewModeButton>
+        )}
       </MatchInfoViewModesWrapper>
       <MatchInfoContent>
         {selectedMatchInfoViewMode === MatchInfoViewModes.LINEUPS && (homeTeamLineup && awayTeamLineup)  && (
@@ -83,6 +93,9 @@ const MatchInfo: FC<{ eventData: IEvent }> = ({ eventData }) => {
         )}
         {selectedMatchInfoViewMode === MatchInfoViewModes.INCIDENTS && (
           <MatchIncidents eventData={eventData}/>
+        )}
+        {selectedMatchInfoViewMode === MatchInfoViewModes.STADIUM && (
+          <StadiumInfo venue={eventData.venue}/>
         )}
       </MatchInfoContent>
     </MatchInfoWrapper>

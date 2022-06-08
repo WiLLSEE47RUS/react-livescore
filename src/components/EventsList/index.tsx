@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FC, useEffect, useMemo, useState } from 'react';
-import { EventItem, EventsHeader, EventsListContainer, EventsModeButton, TeamInfo } from './EventsList.styled';
+import { EventItemWrapper, EventsHeader, EventsListContainer, EventsModeButton, TeamInfo } from './EventsList.styled';
 import { FlexContainer } from '../common/common.styled';
 import {
   EventsStatusesTranslations,
@@ -12,7 +12,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DatePicker } from '@mui/x-date-pickers';
 import { getTranslations } from '../../utils/translations';
-import { formatEventStartDate } from '../../utils/common';
+import { formatEventStartDate, groupBy } from '../../utils/common';
 import { DEFAULT_TIME_FORMAT, DEFAULT_TIME_ZONE } from '../../constants/common.constants';
 import { Spinner } from '../Spinner';
 import moment from 'moment-timezone';
@@ -22,6 +22,8 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import { useGetEventsBySportIdQuery } from '../../services/api';
 import { setSearchValue } from '../../store/events/events.slice';
 import { eventModalActions } from '../../store/eventModal/eventModal.slice';
+import EventItem from '../EventItem';
+import { challengeModalActions } from '../../store/challengeModal/challengeModal.slice';
 
 const EventsList:FC<{ sportId: number }> = ({ sportId }) => {
   const [date, setDate] = useState(moment());
@@ -61,8 +63,15 @@ const EventsList:FC<{ sportId: number }> = ({ sportId }) => {
     dispatch(setSearchValue(event.target.value));
   };
 
-  const handleOpenEventModal = (id: number) => {
-    dispatch(eventModalActions.openEventModal(id));
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const groupedByChallenge = Object.values(groupBy(
+    events,
+    event => event?.league?.slug || event.challenge.slug || event.section.slug)
+  ).sort((a, b) => b[0].section.priority - a[0].section.priority);
+
+  const handleOpenChallengeModal = (id: number) => {
+    dispatch(challengeModalActions.openChallengeModal(id));
   };
 
   return (
@@ -114,31 +123,14 @@ const EventsList:FC<{ sportId: number }> = ({ sportId }) => {
         )}
       </EventsHeader>
       <EventsListContainer>
-        {!isEventsLoading && !isEventsFetching ? events.map(el => (
-          <EventItem
-            key={el.id}
-            status={el.status}
-            onClick={() => handleOpenEventModal(el.id)}
-          >
-            <TeamInfo>
-              {el.home_team.has_logo && (<img src={el.home_team.logo} alt='homeTeamLogo' />)}
-              {getTranslations(el.home_team)}
-            </TeamInfo>
-            <div className='score'>
-              <span>
-                {formatEventStartDate(el.start_at).tz(DEFAULT_TIME_ZONE).format(DEFAULT_TIME_FORMAT)}
-              </span>
-              {el.home_score ? el.home_score.current : 0} - {el.away_score ? el.away_score.current : 0}
-              <span className='status'>
-                {EventsStatusesTranslations[el.status]}
-              </span>
-            </div>
-            <TeamInfo className='awayTeam'>
-              {el.away_team.has_logo && (<img src={el.away_team.logo} alt='awayTeamLogo' />)}
-              {getTranslations(el.away_team)}
-            </TeamInfo>
-          </EventItem>
-        )) : (
+        {!isEventsLoading && !isEventsFetching ? (groupedByChallenge.map(group => (
+          <>
+            <h2 onClick={() => handleOpenChallengeModal(group[0].league_id)}>
+              {getTranslations(group[0]?.league || group[0]?.challenge)}
+            </h2>
+            {group.map (el => <EventItem event={el} key={el.id}/>)}
+          </>
+        ))) : (
           <Spinner width='50' />
         )}
       </EventsListContainer>

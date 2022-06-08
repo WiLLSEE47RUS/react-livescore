@@ -17,6 +17,7 @@ import EventsList from '../../components/EventsList';
 import { useParams } from 'react-router';
 import { DEFAULT_SPORT_ID } from '../../constants/api.constants';
 import { useAppSelector } from '../../store';
+import ChallengeModal from '../../components/ChallengeModal';
 const Events: FC<EventsPropsType> = () => {
 
   const { id } = useParams<{ id: EventTypes }>();
@@ -41,6 +42,7 @@ const Events: FC<EventsPropsType> = () => {
         </TransitionGroup>
       </Content>
       <Event />
+      <ChallengeModal/>
     </Wrapper>
   );
 };

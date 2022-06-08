@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from 'react';
-import { Box, Modal } from '@mui/material';
+import { Box, Modal, Tooltip } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { eventModalActions, eventModalSelector } from '../../store/eventModal/eventModal.slice';
 import { useGetEventDataByIdQuery } from '../../services/api';
@@ -20,11 +20,10 @@ import {
   EventsHeaderDivider,
   EventWrapper,
 } from './Event.styled';
-// import StadiumIcon from '@mui/icons-material/Stadium';
-// import { FlexContainer } from '../common/common.styled';
 import CountDownTimer from '../common/CountDownTimer';
 import MatchInfo from '../MatchInfo';
-// import moment from 'moment';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import { IEvent } from '../../model/events.model';
 
 const style = {
   position: 'absolute',
@@ -53,6 +52,27 @@ const Event: FC = () => {
 
   const eventData = useMemo(() => data?.data, [data]);
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call
+  let isEventInFavourites = JSON.parse(localStorage.getItem('favouritesEvents') || '[]').some(el => el.id === eventId);
+
+  const handleAddToFavourites = () => {
+    if(!eventData) return;
+    const currentFavourites: IEvent[] = JSON.parse(localStorage.getItem('favouritesEvents') || '[]');
+    currentFavourites.push(eventData);
+    localStorage.setItem('favouritesEvents', JSON.stringify(currentFavourites));
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call
+    isEventInFavourites = JSON.parse(localStorage.getItem('favouritesEvents') || '[]').some(el => el.id === eventId);
+  };
+
+  const handleDeleteFromFavourites = () => {
+    if(!eventData) return;
+    const currentFavourites: IEvent[] = JSON.parse(localStorage.getItem('favouritesEvents') || '[]');
+    const newFavourites = currentFavourites.filter(el => el.id !== eventId);
+    localStorage.setItem('favouritesEvents', JSON.stringify(newFavourites));
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call
+    isEventInFavourites = JSON.parse(localStorage.getItem('favouritesEvents') || '[]').some(el => el.id === eventId);
+  };
+
   return (
     <Modal
       open={isOpen}
@@ -62,6 +82,14 @@ const Event: FC = () => {
         {!isLoading && !isFetching && eventData ? (
           <EventWrapper>
             <EventHeaderWrapper>
+              <Tooltip
+                title={isEventInFavourites ? 'Удалить матч из избранного' : 'Добавить матч в избранное'}
+                placement="top-end"
+                style={{ cursor: 'pointer', color: isEventInFavourites ? 'gold' : 'inherit', fontSize: '32px' }}
+              >
+                <StarBorderIcon onClick={isEventInFavourites ? handleDeleteFromFavourites : handleAddToFavourites}/>
+              </Tooltip>
+              <EventsHeaderDivider />
               <span className={`flags flags--category flags--md flags--${eventData.section.flag}`} />
               <EventsHeaderDivider />
               {eventData.league
@@ -78,12 +106,6 @@ const Event: FC = () => {
                   <span>только результат</span>
                 </>
               )}
-              {/*{!!eventData?.venue?.stadium && (*/}
-              {/*  <FlexContainer ai="center" cg="5px">*/}
-              {/*    <StadiumIcon />*/}
-              {/*    {eventData?.venue?.stadium.ru ? eventData?.venue?.stadium.ru : eventData?.venue?.stadium.en}*/}
-              {/*  </FlexContainer>*/}
-              {/*)}*/}
             </EventHeaderWrapper>
             <EventInfoWrapper>
               <EventTeamInfo>

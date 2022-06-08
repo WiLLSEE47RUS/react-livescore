@@ -24,4 +24,8 @@ export const SectionItem = styled(FlexContainer)<{isActive: boolean}>`
     background: ${props => !props.isActive ? 'rgba(0,0,0,0.4)' : 'rgba(255,255,255,0.4)'};
     cursor: pointer;
   }
+  img {
+    height: 32px;
+    width: 32px;
+  }
 `;

@@ -9,6 +9,7 @@ import { EventsStatuses } from '../constants/events.constants';
 import { ISectionModel } from './sections.model';
 import { IChallengeModel } from './challenge.model';
 import { IVenueModel } from './venue.model';
+import { IRefereeModel } from './referee.model';
 
 export interface IEvent {
   aggregated_winner_code?: string,
@@ -42,6 +43,7 @@ export interface IEvent {
   periods_time?: IPeriodsTime,
   priority: number,
   referee_id?: number,
+  referee?: IRefereeModel;
   result_only: boolean,
   round_info: {
     round: number

@@ -8,6 +8,7 @@ import { EventsViewModes } from '../constants/events.constants';
 import { ILineupModel } from '../model/lineup.model';
 import { IStatisticsModel } from '../model/statistics.model';
 import { IIncidentsModel } from '../model/incidents.model';
+import { ILeague, ISeason, ISeasonTable } from '../model/league.model';
 
 export const API = createApi({
   reducerPath: 'API',
@@ -15,7 +16,7 @@ export const API = createApi({
     baseUrl: baseURL,
     prepareHeaders: headers => {
       headers.set('x-rapidapi-host', 'sportscore1.p.rapidapi.com');
-      headers.set('x-rapidapi-key', '309b3078f4mshfd8ebe60fa07d5ep1bbf5ejsn2af1e6f78228');
+      headers.set('x-rapidapi-key', 'fcf0f94828mshe4442eea88a7d01p15a177jsn1344e9c69c0e');
       return headers;
     },
   }),
@@ -29,6 +30,9 @@ export const API = createApi({
     getEventDataById: builder.query<TFetchedData<IEvent>, number | null>({
       query: (id) => `/events/${String(id)}`,
     }),
+    getChallengeDataById: builder.query<TFetchedData<ILeague>, number | null>({
+      query: (id) => `/leagues/${String(id)}`,
+    }),
     getH2HEvents: builder.query<TFetchedData<IEvent[]>, { homeTeam: number, awayTeam: number }>({
       query: ({ homeTeam, awayTeam }) => `/teams/${String(homeTeam)}/h2h-events/${String(awayTeam)}`,
     }),
@@ -41,6 +45,15 @@ export const API = createApi({
     getEventStatisticsById: builder.query<TFetchedData<IStatisticsModel[]>, number | null>({
       query: (id) => `/events/${String(id)}/statistics`,
     }),
+    getSeasonsByLeagueId: builder.query<TFetchedData<ISeason[]>, number | null>({
+      query: (id) => `/leagues/${String(id)}/seasons`,
+    }),
+    getSeasonsTableById: builder.query<TFetchedData<ISeasonTable[]>, number | null>({
+      query: (id) => `/seasons/${String(id)}/standings-tables`,
+    }),
+    getSeasonsEventsById: builder.query<TFetchedData<IEvent[]>, number | null>({
+      query: (id) => `/seasons/${String(id)}/events`,
+    }),
   }),
 });
 
@@ -52,5 +65,9 @@ export const {
   useGetH2HEventsQuery,
   useGetEventStatisticsByIdQuery,
   useGetEventIncidentsByIdQuery,
+  useGetChallengeDataByIdQuery,
+  useGetSeasonsByLeagueIdQuery,
+  useGetSeasonsTableByIdQuery,
+  useGetSeasonsEventsByIdQuery,
 } = API;
 

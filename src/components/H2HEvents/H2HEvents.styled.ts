@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { EventItem, TeamInfo } from '../EventsList/EventsList.styled';
+import { EventItemWrapper, TeamInfo } from '../EventsList/EventsList.styled';
 
 export const H2HEventsWrapper = styled.div`
   width: 100%;
@@ -20,7 +20,7 @@ export const H2HEventsWrapper = styled.div`
   }
 `;
 
-export const H2HEventItem = styled(EventItem)`
+export const H2HEventItem = styled(EventItemWrapper)`
   &:not(:last-child) {
     border-bottom: 1px solid var(--midGray);
   }

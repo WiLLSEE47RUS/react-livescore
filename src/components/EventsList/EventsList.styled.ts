@@ -29,6 +29,9 @@ export const EventsListContainer = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 2px;
+  h2{
+    cursor: pointer;
+  }
 `;
 
 export const EventsModeButton = styled.div<{ mode: EventsViewModes, active?: boolean }>`
@@ -47,7 +50,7 @@ export const EventsModeButton = styled.div<{ mode: EventsViewModes, active?: boo
   margin-right: 10px;
   transition: all 0.5s ease;
 `;
-export const EventItem = styled.div<{ status: EventsStatuses }>`
+export const EventItemWrapper = styled.div<{ status: EventsStatuses }>`
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 150px 1fr;

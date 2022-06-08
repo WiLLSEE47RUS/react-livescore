@@ -56,6 +56,23 @@ export const EventTypesBackgrounds = {
   [EventTypes.VOLLEYBALL]: volleyball,
   [EventTypes.HANDBALL]: handball,
 };
+export const EventTypesTranslations = {
+  [EventTypes.FOOTBALL]: 'Футбол',
+  [EventTypes.TENNIS]: 'Теннис',
+  [EventTypes.BASKETBALL]: 'Баскетбол',
+  [EventTypes.HOCKEY]: 'Хоккей',
+  [EventTypes.VOLLEYBALL]: 'Волейбол',
+  [EventTypes.HANDBALL]: 'Гандбол',
+};
+
+export const EventTypesBackgroundColors = {
+  [EventTypes.FOOTBALL]: '#008638',
+  [EventTypes.TENNIS]: '#3eff41',
+  [EventTypes.BASKETBALL]: '#ff5204',
+  [EventTypes.HOCKEY]: '#b7b7b7',
+  [EventTypes.VOLLEYBALL]: '#ffc757',
+  [EventTypes.HANDBALL]: '#a9a000',
+};
 
 export enum EventsStatusesMore {
   FIRST_HALF = '1st half',
@@ -96,6 +113,7 @@ export enum MatchInfoViewModes {
   H2H = 'H2H',
   STATISTICS = 'STATISTICS',
   INCIDENTS = 'INCIDENTS',
+  STADIUM = 'STADIUM',
 }
 
 export const MatchInfoViewModesTitle = {
@@ -103,6 +121,7 @@ export const MatchInfoViewModesTitle = {
   [MatchInfoViewModes.H2H]: 'H2H',
   [MatchInfoViewModes.STATISTICS]: 'Статистика',
   [MatchInfoViewModes.INCIDENTS]: 'События',
+  [MatchInfoViewModes.STADIUM]: 'Место проведения',
 };
 
 
@@ -200,3 +219,11 @@ export const EventStatisticsNameTranslations = {
   'goal_streak': 'Голевая серия',
   '2_min_penalty': 'Двухминутные удаления',
 };
+export const EventTableNameTranslations = {
+  'P': 'И',
+  'W': 'В',
+  'D': 'Н',
+  'L': 'П',
+  'Goals': 'Голы',
+  'PTS': 'ОЧК',
+}

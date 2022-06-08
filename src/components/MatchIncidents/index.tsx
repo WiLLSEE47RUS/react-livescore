@@ -10,7 +10,6 @@ const MatchIncidents: FC<{ eventData: IEvent }> = ({ eventData }) => {
   const { data, isLoading } = useGetEventIncidentsByIdQuery(eventData.id);
 
   const incidentsData = useMemo(() => data && [...data.data].sort((a, b) => a.order - b.order) || [], [data]);
-  console.log(incidentsData);
 
   const getMatchIncident = (incident: IIncidentsModel) => {
     switch (incident.incident_type) {
@@ -31,7 +30,7 @@ const MatchIncidents: FC<{ eventData: IEvent }> = ({ eventData }) => {
       return <div style={{ display: 'flex', columnGap: '5px' }}>
         <span>{incident.time}',</span>
         <span>{text},</span>
-        <span>{getTranslations(incident.player)},</span>
+        <span>{incident.player && getTranslations(incident.player)},</span>
         <span style={{ color: 'var(--gray)' }}>{incident.player_two_in && ` (${getTranslations(incident.player_two_in)})`},</span>
         <span> {incident.home_score} - {incident.away_score}</span>
       </div>;
@@ -42,7 +41,7 @@ const MatchIncidents: FC<{ eventData: IEvent }> = ({ eventData }) => {
       return <div style={{ display: 'flex', columnGap: '5px' }}>
         <span>{incident.time}',</span>
         <span>{text},</span>
-        <span>{getTranslations(incident.player)}</span>
+        <span>{incident.player && getTranslations(incident.player)}</span>
       </div>;
     }
     case 'substitution': {
@@ -51,7 +50,7 @@ const MatchIncidents: FC<{ eventData: IEvent }> = ({ eventData }) => {
       return <div style={{ display: 'flex', columnGap: '5px' }}>
         <span>{incident.time}',</span>
         <span>{text},</span>
-        <span>{getTranslations(incident.player)},</span>
+        <span>{incident.player && getTranslations(incident.player)},</span>
         <span style={{ color: 'var(--gray)' }}>{incident.player_two_in && ` (${getTranslations(incident.player_two_in)})`}</span>
       </div>;
     }

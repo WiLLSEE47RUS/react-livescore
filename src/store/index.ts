@@ -4,6 +4,7 @@ import { sportTypeSlice } from './sportTypes/sportTypes.slice';
 import { API } from '../services/api';
 import { eventsSlice } from './events/events.slice';
 import { eventModalSlice } from './eventModal/eventModal.slice';
+import { challengeModalSlice } from './challengeModal/challengeModal.slice';
 
 
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
     sportTypes: sportTypeSlice.reducer,
     events: eventsSlice.reducer,
     eventModal: eventModalSlice.reducer,
+    challengeModal: challengeModalSlice.reducer,
     [API.reducerPath]: API.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(API.middleware),
