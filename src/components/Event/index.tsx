@@ -24,6 +24,7 @@ import CountDownTimer from '../common/CountDownTimer';
 import MatchInfo from '../MatchInfo';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import { IEvent } from '../../model/events.model';
+import { teamModalActions } from '../../store/teamModal/teamModal.slice';
 
 const style = {
   position: 'absolute',
@@ -46,6 +47,10 @@ const Event: FC = () => {
 
   const handleClose = () => {
     dispatch(eventModalActions.closeEventModal());
+  };
+
+  const handleOpenTeamModal = (id: number) => {
+    dispatch(teamModalActions.openChallengeModal(id));
   };
 
   const { data, isLoading, isFetching } = useGetEventDataByIdQuery(eventId, { skip: !eventId });
@@ -108,7 +113,7 @@ const Event: FC = () => {
               )}
             </EventHeaderWrapper>
             <EventInfoWrapper>
-              <EventTeamInfo>
+              <EventTeamInfo onClick={() => handleOpenTeamModal(eventData.home_team.id)}>
                 {eventData.home_team.has_logo && (<img src={eventData.home_team.logo} alt='homeTeamLogo' />)}
                 {getTranslations(eventData.home_team)}
               </EventTeamInfo>
@@ -141,7 +146,7 @@ const Event: FC = () => {
                   </span>
                 </>
               </EventScoreInfo>
-              <EventTeamInfo>
+              <EventTeamInfo onClick={() => handleOpenTeamModal(eventData.away_team.id)}>
                 {eventData.away_team.has_logo && (<img src={eventData.away_team.logo} alt='awayTeamLogo' />)}
                 {getTranslations(eventData.away_team)}
               </EventTeamInfo>

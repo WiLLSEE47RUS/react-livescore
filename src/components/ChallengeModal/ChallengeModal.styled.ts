@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { EventHeaderWrapper, EventsHeaderDivider, EventWrapper } from '../Event/Event.styled';
 import { MatchInfoViewModesWrapper } from '../MatchInfo/MatchInfo.styled';
-import { MatchInfoViewModes } from '../../constants/events.constants';
 import { FlexContainer } from '../common/common.styled';
 
 export const ChallengeWrapper = styled(EventWrapper)``;

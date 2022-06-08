@@ -9,6 +9,8 @@ import { ILineupModel } from '../model/lineup.model';
 import { IStatisticsModel } from '../model/statistics.model';
 import { IIncidentsModel } from '../model/incidents.model';
 import { ILeague, ISeason, ISeasonTable } from '../model/league.model';
+import { IPlayerModel } from '../model/player.model';
+import { ITeam } from '../model/team.model';
 
 export const API = createApi({
   reducerPath: 'API',
@@ -54,6 +56,18 @@ export const API = createApi({
     getSeasonsEventsById: builder.query<TFetchedData<IEvent[]>, number | null>({
       query: (id) => `/seasons/${String(id)}/events`,
     }),
+    getTeamDataById: builder.query<TFetchedData<ITeam>, number | null>({
+      query: (id) => `/teams/${String(id)}`,
+    }),
+    getTeamEventsById: builder.query<TFetchedData<IEvent[]>, number | null>({
+      query: (id) => `/teams/${String(id)}/events`,
+    }),
+    getTeamLineupsById: builder.query<TFetchedData<ILineupModel[]>, number | null>({
+      query: (id) => `/teams/${String(id)}/lineups`,
+    }),
+    getPlayerDataById: builder.query<TFetchedData<IPlayerModel>, number | null>({
+      query: (id) => `/players/${String(id)}`,
+    }),
   }),
 });
 
@@ -69,5 +83,9 @@ export const {
   useGetSeasonsByLeagueIdQuery,
   useGetSeasonsTableByIdQuery,
   useGetSeasonsEventsByIdQuery,
+  useGetTeamDataByIdQuery,
+  useGetTeamEventsByIdQuery,
+  useGetTeamLineupsByIdQuery,
+  useGetPlayerDataByIdQuery,
 } = API;
 

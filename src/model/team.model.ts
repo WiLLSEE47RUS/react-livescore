@@ -1,4 +1,5 @@
 import { INameTranslation } from './sport.model';
+import { IManagerModel } from './manager.model';
 
 export interface ITeam {
   category_id: number,
@@ -21,4 +22,5 @@ export interface ITeam {
   slug: string,
   sport_id: number,
   venue_id: number,
+  manager: IManagerModel;
 }

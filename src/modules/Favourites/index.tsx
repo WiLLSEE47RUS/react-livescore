@@ -12,6 +12,7 @@ import { ILeague } from '../../model/league.model';
 import { challengeModalActions } from '../../store/challengeModal/challengeModal.slice';
 import { useAppDispatch } from '../../store';
 import ChallengeModal from '../../components/ChallengeModal';
+import TeamModal from '../../components/TeamModal';
 
 
 const Favourites = () => {
@@ -64,6 +65,7 @@ const Favourites = () => {
       </Content>
       <Event />
       <ChallengeModal />
+      <TeamModal />
     </Wrapper>
   );
 };

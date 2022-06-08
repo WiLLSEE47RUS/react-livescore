@@ -5,7 +5,8 @@ import { API } from '../services/api';
 import { eventsSlice } from './events/events.slice';
 import { eventModalSlice } from './eventModal/eventModal.slice';
 import { challengeModalSlice } from './challengeModal/challengeModal.slice';
-
+import { playerModalSlice } from './playerModal/playerModal.slice';
+import { teamModalSlice } from './teamModal/teamModal.slice';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,8 @@ export const store = configureStore({
     events: eventsSlice.reducer,
     eventModal: eventModalSlice.reducer,
     challengeModal: challengeModalSlice.reducer,
+    playerModal: playerModalSlice.reducer,
+    teamModal: teamModalSlice.reducer,
     [API.reducerPath]: API.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(API.middleware),

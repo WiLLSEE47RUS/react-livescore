@@ -1,8 +1,7 @@
 import React, { ChangeEvent, FC, useEffect, useMemo, useState } from 'react';
-import { EventItemWrapper, EventsHeader, EventsListContainer, EventsModeButton, TeamInfo } from './EventsList.styled';
+import { EventsHeader, EventsListContainer, EventsModeButton } from './EventsList.styled';
 import { FlexContainer } from '../common/common.styled';
 import {
-  EventsStatusesTranslations,
   EventsViewModes,
   EventsViewModesTitle,
 } from '../../constants/events.constants';
@@ -12,8 +11,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DatePicker } from '@mui/x-date-pickers';
 import { getTranslations } from '../../utils/translations';
-import { formatEventStartDate, groupBy } from '../../utils/common';
-import { DEFAULT_TIME_FORMAT, DEFAULT_TIME_ZONE } from '../../constants/common.constants';
+import { groupBy } from '../../utils/common';
 import { Spinner } from '../Spinner';
 import moment from 'moment-timezone';
 import { useDebounce } from '../../hooks/useDebounce';
@@ -21,7 +19,6 @@ import { DEFAULT_DEBOUNCE } from '../../constants/api.constants';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { useGetEventsBySportIdQuery } from '../../services/api';
 import { setSearchValue } from '../../store/events/events.slice';
-import { eventModalActions } from '../../store/eventModal/eventModal.slice';
 import EventItem from '../EventItem';
 import { challengeModalActions } from '../../store/challengeModal/challengeModal.slice';
 
@@ -125,7 +122,10 @@ const EventsList:FC<{ sportId: number }> = ({ sportId }) => {
       <EventsListContainer>
         {!isEventsLoading && !isEventsFetching ? (groupedByChallenge.map(group => (
           <>
-            <h2 onClick={() => handleOpenChallengeModal(group[0].league_id)}>
+            <h2
+              onClick={() => handleOpenChallengeModal(group[0].league_id)}
+              style={{ width: '100%', backgroundColor: 'var(--midGray)', color: 'var(--lightGray'}}
+            >
               {getTranslations(group[0]?.league || group[0]?.challenge)}
             </h2>
             {group.map (el => <EventItem event={el} key={el.id}/>)}
